@@ -41,7 +41,6 @@ function ArtistsCard() {
                   alt={artist.name}
                 />
                 <Text fontWeight="bold">{artist.name}</Text>
-                <Text>{artist.genre}</Text>
               </Card>
             ))
           )}

@@ -41,7 +41,7 @@ function AlbumsCard() {
                   alt={album.title}
                 />
                 <Text fontWeight="bold">{album.title}</Text>
-                <Text>{album.artist}</Text>
+                <Text>{album.artist.name}</Text>
               </Card>
             ))
           )}

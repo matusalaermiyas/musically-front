@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Genre {
-  _id: number;
+export interface Genre {
+  _id: string;
   title: string;
 }
 
@@ -18,7 +18,7 @@ const initialState: GenresState = {
 };
 
 const genresSlice = createSlice({
-  name: 'genres',
+  name: "genres",
   initialState,
   reducers: {
     fetchGenresRequest(state) {
@@ -36,6 +36,7 @@ const genresSlice = createSlice({
   },
 });
 
-export const { fetchGenresRequest, fetchGenresSuccess, fetchGenresFailure } = genresSlice.actions;
+export const { fetchGenresRequest, fetchGenresSuccess, fetchGenresFailure } =
+  genresSlice.actions;
 
 export default genresSlice.reducer;

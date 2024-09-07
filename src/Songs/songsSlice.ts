@@ -1,10 +1,15 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Artist } from "../Artists/artistsSlice";
+import { Genre } from "../Genres/genresSlice";
+import { Album } from "../Albums/albumsSlice";
 
-interface Song {
+export interface Song {
   _id: string;
   title: string;
-  artist: string;
+  artist: Artist;
   imageUrl: string;
+  genre: Genre;
+  album: Album;
 }
 
 interface SongsState {
@@ -20,23 +25,33 @@ const initialState: SongsState = {
 };
 
 const songsSlice = createSlice({
-  name: 'songs',
+  name: "songs",
   initialState,
   reducers: {
     fetchSongsRequest(state) {
       state.loading = true;
-      state.error = null;
     },
     fetchSongsSuccess(state, action: PayloadAction<Song[]>) {
-      state.songs = action.payload;
       state.loading = false;
+      state.songs = action.payload;
     },
     fetchSongsFailure(state, action: PayloadAction<string>) {
-      state.error = action.payload;
       state.loading = false;
+      state.error = action.payload;
+    },
+    deleteSongRequest(state, action: PayloadAction<string>) {
+      // Handle song deletion here
+      console.log("Viewing song to delete");
+      console.log(action.payload);
     },
   },
 });
 
-export const { fetchSongsRequest, fetchSongsSuccess, fetchSongsFailure } = songsSlice.actions;
+export const {
+  fetchSongsRequest,
+  fetchSongsSuccess,
+  fetchSongsFailure,
+  deleteSongRequest,
+} = songsSlice.actions;
+
 export default songsSlice.reducer;

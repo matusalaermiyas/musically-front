@@ -1,9 +1,13 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import axios from 'axios';
-import { fetchSongsRequest, fetchSongsSuccess, fetchSongsFailure } from './songsSlice';
+import { call, put, takeLatest } from "redux-saga/effects";
+import axios from "axios";
+import {
+  fetchSongsRequest,
+  fetchSongsSuccess,
+  fetchSongsFailure,
+} from "./songsSlice";
 
 function fetchSongsApi() {
-  return axios.get('http://localhost:8080/songs'); // Replace with your backend URL
+  return axios.get("http://localhost:8000/songs"); // Replace with your backend URL
 }
 
 function* fetchSongsSaga(): any {
@@ -15,11 +19,8 @@ function* fetchSongsSaga(): any {
   }
 }
 
- function* watchFetchSongs() {
+function* watchFetchSongs() {
   yield takeLatest(fetchSongsRequest.type, fetchSongsSaga);
 }
 
-
-export {
-  watchFetchSongs
-} 
+export { watchFetchSongs };

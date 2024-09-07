@@ -1,6 +1,10 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import axios, { AxiosResponse } from 'axios';
-import { fetchGenresRequest, fetchGenresSuccess, fetchGenresFailure } from './genresSlice';
+import { call, put, takeLatest } from "redux-saga/effects";
+import axios, { AxiosResponse } from "axios";
+import {
+  fetchGenresRequest,
+  fetchGenresSuccess,
+  fetchGenresFailure,
+} from "./genresSlice";
 
 // Define the Genre type (same as in the genresSlice)
 interface Genre {
@@ -13,7 +17,9 @@ type GenresResponse = AxiosResponse<Genre[]>;
 
 // Function to fetch genres from the backend
 async function fetchGenresApi(): Promise<Genre[]> {
-  const response: GenresResponse = await axios.get<Genre[]>('http://localhost:8080/genres');
+  const response: GenresResponse = await axios.get<Genre[]>(
+    "http://localhost:8000/genres"
+  );
   return response.data;
 }
 

@@ -5,15 +5,17 @@ function NavBar() {
   return (
     <Box>
       <Flex css={navbarStyle}>
-        <Flex alignItems="center">
-          <Image src="https://via.placeholder.com/50" alt="Musically Logo" />
-          <Heading fontSize={4} ml={2}>
-            Musically
-          </Heading>
-        </Flex>
+        <Link href="/">
+          <Flex alignItems="center">
+            <Image src="https://via.placeholder.com/50" alt="Musically Logo" />
+            <Heading fontSize={4} ml={2}>
+              Musically
+            </Heading>
+          </Flex>
+        </Link>
 
         <Flex alignItems="center">
-          <Link href="#songs" css={linkStyle}>
+          <Link href="/songs" css={linkStyle}>
             Songs
           </Link>
           <Link href="#artists" css={linkStyle}>
@@ -25,7 +27,7 @@ function NavBar() {
           <Link href="#genres" css={linkStyle}>
             Genres
           </Link>
-          <Link href="#genres" css={linkStyle}>
+          <Link href="/statistics" css={linkStyle}>
             Statistics
           </Link>
         </Flex>

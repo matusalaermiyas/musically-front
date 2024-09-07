@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Artist } from "../Artists/artistsSlice";
 
-interface Album {
+export interface Album {
   _id: string;
   title: string;
-  artist: string;
-  releaseDate: string;
+  artist: Artist;
   imageUrl: string;
 }
 
@@ -21,7 +21,7 @@ const initialState: AlbumsState = {
 };
 
 const albumsSlice = createSlice({
-  name: 'albums',
+  name: "albums",
   initialState,
   reducers: {
     fetchAlbumsRequest(state) {
@@ -39,6 +39,7 @@ const albumsSlice = createSlice({
   },
 });
 
-export const { fetchAlbumsRequest, fetchAlbumsSuccess, fetchAlbumsFailure } = albumsSlice.actions;
+export const { fetchAlbumsRequest, fetchAlbumsSuccess, fetchAlbumsFailure } =
+  albumsSlice.actions;
 
 export default albumsSlice.reducer;

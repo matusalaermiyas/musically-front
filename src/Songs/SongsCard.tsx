@@ -37,7 +37,7 @@ function SongsCard() {
               <Card key={song._id} css={cardStyle}>
                 <Image src={song.imageUrl} css={imageStyle} alt={song.title} />
                 <Text fontWeight="bold">{song.title}</Text>
-                <Text>{song.artist}</Text>
+                <Text>{song.artist.name}</Text>
               </Card>
             ))
           )}

@@ -1,6 +1,10 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import axios, { AxiosResponse } from 'axios';
-import { fetchArtistsRequest, fetchArtistsSuccess, fetchArtistsFailure } from './artistsSlice';
+import { call, put, takeLatest } from "redux-saga/effects";
+import axios, { AxiosResponse } from "axios";
+import {
+  fetchArtistsRequest,
+  fetchArtistsSuccess,
+  fetchArtistsFailure,
+} from "./artistsSlice";
 
 // Define the Artist type (same as in the artistsSlice)
 interface Artist {
@@ -15,7 +19,9 @@ type ArtistsResponse = AxiosResponse<Artist[]>;
 
 // Function to fetch artists from the backend
 async function fetchArtistsApi(): Promise<Artist[]> {
-  const response: ArtistsResponse = await axios.get<Artist[]>('http://localhost:8080/artists');
+  const response: ArtistsResponse = await axios.get<Artist[]>(
+    "http://localhost:8000/artists"
+  );
   return response.data;
 }
 

@@ -8,6 +8,8 @@ import artistsReducer from '../Artists/artistsSlice';
 import { watchFetchArtistsSaga } from '../Artists/artistsSaga';
 import genresReducer from '../Genres/genresSlice';
 import { watchFetchGenresSaga } from '../Genres/genresSaga';
+import { watchFetchStatisticsSaga } from '../Statistics/statisticsSaga';
+import statisticsReducer from '../Statistics/statisticsSlice';
 
 // Create saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -17,8 +19,8 @@ export const store = configureStore({
     songs: songsReducer,
     albums: albumsReducer, 
     artists: artistsReducer, 
-    genres: genresReducer
-  
+    genres: genresReducer, 
+    statistcs: statisticsReducer
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -30,6 +32,7 @@ sagaMiddleware.run(watchFetchSongs);
 sagaMiddleware.run(watchFetchAlbumsSaga);
 sagaMiddleware.run(watchFetchArtistsSaga);
 sagaMiddleware.run(watchFetchGenresSaga)
+sagaMiddleware.run(watchFetchStatisticsSaga)
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

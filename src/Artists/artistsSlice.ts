@@ -1,9 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Artist {
+export interface Artist {
   _id: string;
   name: string;
-  genre: string;
   imageUrl: string;
 }
 
@@ -20,7 +19,7 @@ const initialState: ArtistsState = {
 };
 
 const artistsSlice = createSlice({
-  name: 'artists',
+  name: "artists",
   initialState,
   reducers: {
     fetchArtistsRequest(state) {
@@ -38,6 +37,7 @@ const artistsSlice = createSlice({
   },
 });
 
-export const { fetchArtistsRequest, fetchArtistsSuccess, fetchArtistsFailure } = artistsSlice.actions;
+export const { fetchArtistsRequest, fetchArtistsSuccess, fetchArtistsFailure } =
+  artistsSlice.actions;
 
 export default artistsSlice.reducer;

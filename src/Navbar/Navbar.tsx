@@ -1,4 +1,4 @@
-import { Box, Image, Heading, Flex } from "rebass";
+import { Box, Heading, Flex } from "rebass";
 import { StyledLink, navbarStyle } from "../styles/styles";
 
 function NavBar() {

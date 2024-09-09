@@ -8,8 +8,6 @@ import {
 } from "./albumsSlice";
 import { BackendUrl } from "../config/config";
 
-// Define the Album type (same as in the albumsSlice)
-
 // Type for Axios response
 type AlbumsResponse = AxiosResponse<Album[]>;
 

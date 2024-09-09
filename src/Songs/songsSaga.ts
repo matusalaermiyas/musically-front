@@ -18,7 +18,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { BackendUrl } from "../config/config";
 
 function fetchSongsApi() {
-  return axios.get(`${BackendUrl}/songs`); // Replace with your backend URL
+  return axios.get(`${BackendUrl}/songs`);
 }
 
 function* fetchSongsSaga(): any {

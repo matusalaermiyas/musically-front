@@ -4,13 +4,9 @@ import {
   fetchGenresRequest,
   fetchGenresSuccess,
   fetchGenresFailure,
+  Genre,
 } from "./genresSlice";
-
-// Define the Genre type (same as in the genresSlice)
-interface Genre {
-  id: number;
-  title: string;
-}
+import { BackendUrl } from "../config/config";
 
 // Type for Axios response
 type GenresResponse = AxiosResponse<Genre[]>;
@@ -18,7 +14,7 @@ type GenresResponse = AxiosResponse<Genre[]>;
 // Function to fetch genres from the backend
 async function fetchGenresApi(): Promise<Genre[]> {
   const response: GenresResponse = await axios.get<Genre[]>(
-    "http://localhost:8000/genres"
+    `${BackendUrl}/genres`
   );
   return response.data;
 }

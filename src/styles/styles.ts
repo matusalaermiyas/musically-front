@@ -1,4 +1,6 @@
 import { css } from "@emotion/react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 // Global styles to apply the font across the app
 const globalStyles = css`
@@ -64,7 +66,7 @@ const navbarStyle = css`
   border-bottom: 1px solid #ddd;
 `;
 
-const linkStyle = css`
+const StyledLink = styled(Link)`
   margin-left: 20px;
   text-decoration: none;
   color: #333;
@@ -75,5 +77,13 @@ const linkStyle = css`
   }
 `;
 
-
-export { sectionStyle, contentStyle, cardStyle, imageStyle, buttonStyle, linkStyle, navbarStyle, globalStyles };
+export {
+  sectionStyle,
+  contentStyle,
+  cardStyle,
+  imageStyle,
+  buttonStyle,
+  StyledLink,
+  navbarStyle,
+  globalStyles,
+};

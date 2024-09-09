@@ -1,52 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSongsRequest, deleteSongRequest } from "./songsSlice";
-import { RootState } from "../store/configureStore";
 import Select from "react-select";
-import { Box, Button, Card, Text } from "rebass";
-import { css, Global } from "@emotion/react";
-import { fetchArtistsRequest } from "../Artists/artistsSlice";
-import { fetchGenresRequest } from "../Genres/genresSlice";
+import { Box, Button, Text } from "rebass";
+import { Global } from "@emotion/react";
 import NavBar from "../Navbar/Navbar";
 import { globalStyles } from "../styles/styles";
 
-const pageStyle = css`
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
-`;
+import { RootState } from "../store/configureStore";
+import { fetchArtistsRequest } from "../Artists/artistsSlice";
+import { fetchGenresRequest } from "../Genres/genresSlice";
+import { fetchSongsRequest } from "./songsSlice";
 
-const filtersStyle = css`
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-`;
-
-const cardStyle = css`
-  background-color: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const buttonGroupStyle = css`
-  display: flex;
-  gap: 10px;
-`;
-
-const resetButtonStyle = css`
-  margin-left: 20px;
-  background-color: #007bff;
-`;
-
-const editButtonStyle = css`
-  background-color: #007bff;
-`;
+import Dialog from "rc-dialog";
+import CreateSong from "./CreateSong";
+import { filtersStyle, pageStyle, resetButtonStyle } from "./styles";
+import SongsListItem from "./SongsListItem";
 
 interface Option {
   value: string;
@@ -59,10 +28,16 @@ const SongsPage: React.FC = () => {
     (state: RootState) => state.songs
   );
   const { artists } = useSelector((state: RootState) => state.artists);
+
   const { genres } = useSelector((state: RootState) => state.genres);
 
   const [selectedArtist, setSelectedArtist] = useState<Option | null>(null);
   const [selectedGenre, setSelectedGenre] = useState<Option | null>(null);
+
+  const [visible, setVisible] = useState(false);
+
+  const showDialog = () => setVisible(true);
+  const hideDialog = () => setVisible(false);
 
   useEffect(() => {
     dispatch(fetchSongsRequest());
@@ -70,22 +45,22 @@ const SongsPage: React.FC = () => {
     dispatch(fetchGenresRequest()); // Fetch genres from store
   }, [dispatch]);
 
-  const handleDelete = (id: string) => {
-    dispatch(deleteSongRequest(id));
-  };
-
   const handleResetFilters = () => {
     setSelectedArtist(null);
     setSelectedGenre(null);
   };
 
+  const handleAddSong = () => {
+    showDialog();
+  };
+
   // Filter songs based on selected artist and genre
   const filteredSongs = songs.filter((song) => {
     const artistMatches = selectedArtist
-      ? song.artist.name === selectedArtist.label
+      ? song.artist?.name === selectedArtist.label
       : true;
     const genreMatches = selectedGenre
-      ? song.genre.title === selectedGenre.label
+      ? song.genre?.title === selectedGenre.label
       : true;
     return artistMatches && genreMatches;
   });
@@ -104,6 +79,14 @@ const SongsPage: React.FC = () => {
   return (
     <Box>
       <Global styles={globalStyles} />
+
+      <Dialog
+        visible={visible}
+        onClose={hideDialog}
+        title="Add Song"
+        closable={true}
+        children={<CreateSong />}
+      />
 
       <NavBar />
       <Box css={pageStyle}>
@@ -125,6 +108,10 @@ const SongsPage: React.FC = () => {
           <Button css={resetButtonStyle} onClick={handleResetFilters}>
             Reset Filters
           </Button>
+
+          <Button css={resetButtonStyle} onClick={handleAddSong}>
+            Add Song
+          </Button>
         </Box>
         {loading ? (
           <Text>Loading...</Text>
@@ -134,30 +121,7 @@ const SongsPage: React.FC = () => {
           <Text>No songs match the selected filters.</Text>
         ) : (
           filteredSongs.map((song) => (
-            <Card key={song._id} css={cardStyle}>
-              <Box>
-                <Text fontWeight="bold">{song.title}</Text>
-                <Text>
-                  {song.artist.name} - {song.album.title} - {song.genre.title}
-                </Text>
-              </Box>
-              <Box css={buttonGroupStyle}>
-                <Button
-                  onClick={() => alert(`Edit song: ${song.title}`)}
-                  css={editButtonStyle}
-                  variant="primary"
-                >
-                  Edit
-                </Button>
-                <Button
-                  onClick={() => handleDelete(song._id)}
-                  variant="outline"
-                  color="red"
-                >
-                  Delete
-                </Button>
-              </Box>
-            </Card>
+            <SongsListItem key={song._id} song={song} />
           ))
         )}
       </Box>

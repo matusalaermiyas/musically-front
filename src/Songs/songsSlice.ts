@@ -39,10 +39,36 @@ const songsSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    deleteSongRequest(state, action: PayloadAction<string>) {
-      // Handle song deletion here
-      console.log("Viewing song to delete");
+    deleteSongRequest(_state, _action: PayloadAction<string>) {},
+    deleteSongSucess(state, action: PayloadAction<string>) {
+      state.songs = state.songs.filter((song) => song._id !== action.payload);
+    },
+    deleteSongFailure(_state, _action: PayloadAction<string>) {
+      alert("Error while deleting song");
+    },
+    createSongRequest: (_state, _action: PayloadAction<any>) => {},
+    createSongSuccess: (state, action: PayloadAction<Song>) => {
+      state.songs.push(action.payload);
+    },
+    createSongFailure: (_state, _action: PayloadAction<string>) => {
+      alert("Error while creating song!");
+    },
+
+    updateSongRequest(_state, _action: PayloadAction<{}>) {},
+    updateSongSuccess(state, action: PayloadAction<Song>) {
+      console.log("Viewing returned data");
       console.log(action.payload);
+
+      const index = state.songs.findIndex(
+        (song) => song._id === action.payload._id
+      );
+      if (index !== -1) {
+        state.songs[index] = action.payload;
+      }
+      state.loading = false;
+    },
+    updateSongFailure(_state) {
+      alert("Error while updating song");
     },
   },
 });
@@ -51,7 +77,18 @@ export const {
   fetchSongsRequest,
   fetchSongsSuccess,
   fetchSongsFailure,
+
   deleteSongRequest,
+  deleteSongSucess,
+  deleteSongFailure,
+
+  createSongRequest,
+  createSongFailure,
+  createSongSuccess,
+
+  updateSongRequest,
+  updateSongSuccess,
+  updateSongFailure,
 } = songsSlice.actions;
 
 export default songsSlice.reducer;

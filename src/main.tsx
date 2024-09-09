@@ -5,10 +5,10 @@ import { ThemeProvider } from "styled-components";
 import theme from "./theme/theme.ts";
 import { Provider } from "react-redux";
 import { store } from "./store/configureStore";
-import { createBrowserRouter, Router, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Statistics from "./Statistics/Statistics.tsx";
 import SongsPage from "./Songs/Songs.tsx";
-// import './index.css'
+import "rc-dialog/assets/index.css";
 
 const router = createBrowserRouter([
   {

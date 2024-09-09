@@ -4,16 +4,11 @@ import {
   fetchAlbumsRequest,
   fetchAlbumsSuccess,
   fetchAlbumsFailure,
+  Album,
 } from "./albumsSlice";
+import { BackendUrl } from "../config/config";
 
 // Define the Album type (same as in the albumsSlice)
-interface Album {
-  id: number;
-  title: string;
-  artist: string;
-  releaseDate: string;
-  imageUrl: string;
-}
 
 // Type for Axios response
 type AlbumsResponse = AxiosResponse<Album[]>;
@@ -21,7 +16,7 @@ type AlbumsResponse = AxiosResponse<Album[]>;
 // Function to fetch albums from the backend
 async function fetchAlbumsApi(): Promise<Album[]> {
   const response: AlbumsResponse = await axios.get<Album[]>(
-    "http://localhost:8000/albums"
+    `${BackendUrl}/albums`
   );
   return response.data;
 }

@@ -1,35 +1,25 @@
-import { Box, Image, Heading, Flex, Link } from "rebass";
-import { linkStyle, navbarStyle } from "../styles/styles";
+import { Box, Image, Heading, Flex } from "rebass";
+import { StyledLink, navbarStyle } from "../styles/styles";
 
 function NavBar() {
   return (
     <Box>
       <Flex css={navbarStyle}>
-        <Link href="/">
+        <StyledLink to="/">
           <Flex alignItems="center">
-            <Image src="https://via.placeholder.com/50" alt="Musically Logo" />
+            {/* <Image src="https://via.placeholder.com/50" alt="Musically Logo" /> */}
             <Heading fontSize={4} ml={2}>
               Musically
             </Heading>
           </Flex>
-        </Link>
+        </StyledLink>
 
         <Flex alignItems="center">
-          <Link href="/songs" css={linkStyle}>
-            Songs
-          </Link>
-          <Link href="#artists" css={linkStyle}>
-            Artists
-          </Link>
-          <Link href="#albums" css={linkStyle}>
-            Albums
-          </Link>
-          <Link href="#genres" css={linkStyle}>
-            Genres
-          </Link>
-          <Link href="/statistics" css={linkStyle}>
-            Statistics
-          </Link>
+          <StyledLink to="/songs">Songs</StyledLink>
+          <StyledLink to="#artists">Artists</StyledLink>
+          <StyledLink to="#albums">Albums</StyledLink>
+          <StyledLink to="#genres">Genres</StyledLink>
+          <StyledLink to="/statistics">Statistics</StyledLink>
         </Flex>
       </Flex>
     </Box>

@@ -10,9 +10,13 @@ import {
   imageStyle,
   sectionStyle,
 } from "../styles/styles";
+import { useNavigate } from "react-router-dom";
 
 function SongsCard() {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
+
   const { error, loading, songs } = useSelector(
     (state: RootState) => state.songs
   );
@@ -21,6 +25,10 @@ function SongsCard() {
     // Dispatch fetch songs action on component mount
     dispatch(fetchSongsRequest());
   }, [dispatch]);
+
+  const handleManageSongs = () => {
+    return navigate("/songs");
+  };
 
   return (
     <Box>
@@ -42,7 +50,9 @@ function SongsCard() {
             ))
           )}
         </Flex>
-        <Button css={buttonStyle}>View More Songs</Button>
+        <Button css={buttonStyle} onClick={handleManageSongs}>
+          Manage Songs
+        </Button>
       </Box>
     </Box>
   );

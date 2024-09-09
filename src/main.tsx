@@ -1,32 +1,20 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import { ThemeProvider } from "styled-components";
-import theme from "./theme/theme.ts";
+
 import { Provider } from "react-redux";
 import { store } from "./store/configureStore";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Statistics from "./Statistics/Statistics.tsx";
-import SongsPage from "./Songs/Songs.tsx";
-import "rc-dialog/assets/index.css";
+
 import { ToastContainer } from "react-toastify";
 
-import "react-toastify/dist/ReactToastify.css";
+import { RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/statistics",
-    element: <Statistics />,
-  },
-  {
-    path: "/songs",
-    element: <SongsPage />,
-  },
-]);
+import { router } from "./config/routes.tsx";
+
+import { ThemeProvider } from "styled-components";
+import theme from "./theme/theme.ts";
+
+import "rc-dialog/assets/index.css";
+import "react-toastify/dist/ReactToastify.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

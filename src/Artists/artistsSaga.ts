@@ -4,15 +4,9 @@ import {
   fetchArtistsRequest,
   fetchArtistsSuccess,
   fetchArtistsFailure,
+  Artist,
 } from "./artistsSlice";
-
-// Define the Artist type (same as in the artistsSlice)
-interface Artist {
-  id: number;
-  name: string;
-  genre: string;
-  imageUrl: string;
-}
+import { BackendUrl } from "../config/config";
 
 // Type for Axios response
 type ArtistsResponse = AxiosResponse<Artist[]>;
@@ -20,7 +14,7 @@ type ArtistsResponse = AxiosResponse<Artist[]>;
 // Function to fetch artists from the backend
 async function fetchArtistsApi(): Promise<Artist[]> {
   const response: ArtistsResponse = await axios.get<Artist[]>(
-    "http://localhost:8000/artists"
+    `${BackendUrl}/artists`
   );
   return response.data;
 }

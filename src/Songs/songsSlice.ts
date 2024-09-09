@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Artist } from "../Artists/artistsSlice";
 import { Genre } from "../Genres/genresSlice";
 import { Album } from "../Albums/albumsSlice";
+import { toast } from "react-toastify";
 
 export interface Song {
   _id: string;
@@ -42,23 +43,22 @@ const songsSlice = createSlice({
     deleteSongRequest(_state, _action: PayloadAction<string>) {},
     deleteSongSucess(state, action: PayloadAction<string>) {
       state.songs = state.songs.filter((song) => song._id !== action.payload);
+      toast.success("Song Deleted Successfully");
     },
     deleteSongFailure(_state, _action: PayloadAction<string>) {
-      alert("Error while deleting song");
+      toast.error("Unable to delete a song");
     },
     createSongRequest: (_state, _action: PayloadAction<any>) => {},
     createSongSuccess: (state, action: PayloadAction<Song>) => {
       state.songs.push(action.payload);
+      toast.success("Song Created, Close Window");
     },
     createSongFailure: (_state, _action: PayloadAction<string>) => {
-      alert("Error while creating song!");
+      toast.error("Error while creating song");
     },
 
     updateSongRequest(_state, _action: PayloadAction<{}>) {},
     updateSongSuccess(state, action: PayloadAction<Song>) {
-      console.log("Viewing returned data");
-      console.log(action.payload);
-
       const index = state.songs.findIndex(
         (song) => song._id === action.payload._id
       );
@@ -66,9 +66,11 @@ const songsSlice = createSlice({
         state.songs[index] = action.payload;
       }
       state.loading = false;
+
+      toast.success("Song updated, Close Window");
     },
     updateSongFailure(_state) {
-      alert("Error while updating song");
+      toast.error("Unable to update song try again");
     },
   },
 });

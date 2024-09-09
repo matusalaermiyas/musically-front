@@ -9,6 +9,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Statistics from "./Statistics/Statistics.tsx";
 import SongsPage from "./Songs/Songs.tsx";
 import "rc-dialog/assets/index.css";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
+      <ToastContainer />
       <Provider store={store}>
         <RouterProvider router={router} />
       </Provider>

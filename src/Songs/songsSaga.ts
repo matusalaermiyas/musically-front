@@ -4,10 +4,21 @@ import {
   fetchSongsRequest,
   fetchSongsSuccess,
   fetchSongsFailure,
+  deleteSongSucess,
+  deleteSongFailure,
+  deleteSongRequest,
+  createSongSuccess,
+  createSongFailure,
+  createSongRequest,
+  updateSongRequest,
+  updateSongSuccess,
+  updateSongFailure,
 } from "./songsSlice";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { BackendUrl } from "../config/config";
 
 function fetchSongsApi() {
-  return axios.get("http://localhost:8000/songs"); // Replace with your backend URL
+  return axios.get(`${BackendUrl}/songs`); // Replace with your backend URL
 }
 
 function* fetchSongsSaga(): any {
@@ -21,6 +32,58 @@ function* fetchSongsSaga(): any {
 
 function* watchFetchSongs() {
   yield takeLatest(fetchSongsRequest.type, fetchSongsSaga);
+}
+
+function* deleteSongSaga(action: PayloadAction<string>) {
+  try {
+    const songId = action.payload;
+    yield call(axios.delete, `${BackendUrl}/songs/${action.payload}`);
+    yield put(deleteSongSucess(songId));
+  } catch (error) {
+    yield put(deleteSongFailure(error as string));
+  }
+}
+
+export function* watchDeleteSongSaga() {
+  yield takeLatest(deleteSongRequest.type, deleteSongSaga);
+}
+
+function* createSongSaga(
+  action: PayloadAction<any>
+): Generator<any, void, any> {
+  try {
+    const response = yield call(
+      axios.post,
+      `${BackendUrl}/songs`,
+      action.payload
+    );
+    yield put(createSongSuccess(response.data));
+  } catch (error: any) {
+    yield put(createSongFailure(error.message));
+  }
+}
+
+export function* watchCreateSongSaga() {
+  yield takeLatest(createSongRequest.type, createSongSaga);
+}
+
+function* updateSongSaga(
+  action: PayloadAction<any>
+): Generator<any, void, any> {
+  try {
+    const response = yield call(
+      axios.put,
+      `${BackendUrl}/songs/${action.payload.id}`,
+      action.payload
+    );
+    yield put(updateSongSuccess(response.data));
+  } catch (error: any) {
+    yield put(updateSongFailure(error.message));
+  }
+}
+
+export function* watchUpdateSongSaga() {
+  yield takeLatest(updateSongRequest.type, updateSongSaga);
 }
 
 export { watchFetchSongs };

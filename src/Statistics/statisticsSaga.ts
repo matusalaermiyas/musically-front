@@ -6,6 +6,7 @@ import {
   fetchStatisticsFailure,
   Statistics,
 } from "./statisticsSlice";
+import { BackendUrl } from "../config/config";
 
 // Type for Axios response
 type StatisticsApiResponse = AxiosResponse<Statistics>;
@@ -13,7 +14,7 @@ type StatisticsApiResponse = AxiosResponse<Statistics>;
 // Function to fetch statistics from the backend
 async function fetchStatisticsApi(): Promise<Statistics> {
   const response: StatisticsApiResponse = await axios.get<Statistics>(
-    "http://localhost:8000/statistics"
+    `${BackendUrl}/statistics`
   );
   return response.data;
 }

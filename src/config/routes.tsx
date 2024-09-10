@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Statistics from "../Statistics/Statistics.tsx";
 import App from "../App.tsx";
-import SongsPage from "../Songs/Songs.tsx";
+import AllSongsPage from "../Songs/AllSongs.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +15,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "/songs",
-    element: <SongsPage />,
+    element: <AllSongsPage />,
   },
 ]);

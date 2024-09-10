@@ -12,7 +12,7 @@ import {
 } from "../styles/styles";
 import { useNavigate } from "react-router-dom";
 
-function SongsCard() {
+function SongsHomeCard() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -58,4 +58,4 @@ function SongsCard() {
   );
 }
 
-export default SongsCard;
+export default SongsHomeCard;

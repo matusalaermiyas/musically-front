@@ -6,7 +6,7 @@ import {
   fetchAlbumsFailure,
   Album,
 } from "./albumsSlice";
-import { BackendUrl } from "../config/config";
+import { BackendUrl } from "../config/api";
 
 // Type for Axios response
 type AlbumsResponse = AxiosResponse<Album[]>;

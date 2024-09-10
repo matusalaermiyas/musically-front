@@ -6,7 +6,7 @@ import {
   fetchGenresFailure,
   Genre,
 } from "./genresSlice";
-import { BackendUrl } from "../config/config";
+import { BackendUrl } from "../config/api";
 
 // Type for Axios response
 type GenresResponse = AxiosResponse<Genre[]>;

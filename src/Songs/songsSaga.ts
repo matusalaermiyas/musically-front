@@ -15,7 +15,7 @@ import {
   updateSongFailure,
 } from "./songsSlice";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { BackendUrl } from "../config/config";
+import { BackendUrl } from "../config/api";
 
 function fetchSongsApi() {
   return axios.get(`${BackendUrl}/songs`);

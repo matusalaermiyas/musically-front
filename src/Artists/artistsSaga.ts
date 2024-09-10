@@ -6,7 +6,7 @@ import {
   fetchArtistsFailure,
   Artist,
 } from "./artistsSlice";
-import { BackendUrl } from "../config/config";
+import { BackendUrl } from "../config/api";
 
 // Type for Axios response
 type ArtistsResponse = AxiosResponse<Artist[]>;

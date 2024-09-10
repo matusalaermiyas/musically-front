@@ -11,7 +11,7 @@ import { RootState } from "../store/configureStore";
 import { useEffect } from "react";
 import { fetchAlbumsRequest } from "./albumsSlice";
 
-function AlbumsCard() {
+function AlbumsHomeCard() {
   const dispatch = useDispatch();
   const { albums, loading, error } = useSelector(
     (state: RootState) => state.albums
@@ -52,4 +52,4 @@ function AlbumsCard() {
   );
 }
 
-export default AlbumsCard;
+export default AlbumsHomeCard;

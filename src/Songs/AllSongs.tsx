@@ -22,7 +22,7 @@ interface Option {
   label: string;
 }
 
-const SongsPage: React.FC = () => {
+const AllSongsPage: React.FC = () => {
   const dispatch = useDispatch();
   const { songs, loading, error } = useSelector(
     (state: RootState) => state.songs
@@ -129,4 +129,4 @@ const SongsPage: React.FC = () => {
   );
 };
 
-export default SongsPage;
+export default AllSongsPage;

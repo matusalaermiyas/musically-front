@@ -2,10 +2,10 @@
 import { Global } from "@emotion/react";
 import { Box } from "rebass";
 import { FC } from "react";
-import SongsCard from "../Songs/SongsCard";
-import AlbumsCard from "../Albums/AlbumsCard";
-import ArtistsCard from "../Artists/ArtistsCard";
-import GenresCard from "../Genres/GenresCard";
+import SongsHomeCard from "../Songs/SongsHomeCard";
+import AlbumsHomeCard from "../Albums/AlbumsHomeCard";
+import ArtistsHomeCard from "../Artists/ArtistsHomeCard";
+import GenresHomeCard from "../Genres/GenresHomeCard";
 import NavBar from "../Navbar/Navbar";
 import { globalStyles } from "../styles/styles";
 
@@ -19,10 +19,10 @@ const LandingPage: FC = () => {
       <NavBar />
 
       {/* Songs Section */}
-      <SongsCard />
-      <AlbumsCard />
-      <ArtistsCard />
-      <GenresCard />
+      <SongsHomeCard />
+      <AlbumsHomeCard />
+      <ArtistsHomeCard />
+      <GenresHomeCard />
     </Box>
   );
 };

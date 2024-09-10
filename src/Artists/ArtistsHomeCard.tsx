@@ -11,7 +11,7 @@ import {
 } from "../styles/styles";
 import { useEffect } from "react";
 
-function ArtistsCard() {
+function ArtistsHomeCard() {
   const dispatch = useDispatch();
   const { artists, loading, error } = useSelector(
     (state: RootState) => state.artists
@@ -51,4 +51,4 @@ function ArtistsCard() {
   );
 }
 
-export default ArtistsCard;
+export default ArtistsHomeCard;

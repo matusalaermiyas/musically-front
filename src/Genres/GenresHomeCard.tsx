@@ -10,7 +10,7 @@ import {
   sectionStyle,
 } from "../styles/styles";
 
-function GenresCard() {
+function GenresHomeCard() {
   const dispatch = useDispatch();
   const { genres, loading, error } = useSelector(
     (state: RootState) => state.genres
@@ -45,4 +45,4 @@ function GenresCard() {
   );
 }
 
-export default GenresCard;
+export default GenresHomeCard;

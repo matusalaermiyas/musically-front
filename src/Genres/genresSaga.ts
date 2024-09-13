@@ -22,7 +22,6 @@ async function fetchGenresApi(): Promise<Genre[]> {
 // Saga to handle the side effect of fetching genres
 function* fetchGenresSaga(): Generator {
   try {
-    // Use `call` effect for async operation, typed as `Promise<Genre[]>`
     const genres: Genre[] = (yield call(fetchGenresApi)) as Genre[];
     // Dispatch success action with genres
     yield put(fetchGenresSuccess(genres));

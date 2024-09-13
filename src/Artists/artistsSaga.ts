@@ -22,7 +22,6 @@ async function fetchArtistsApi(): Promise<Artist[]> {
 // Saga to handle the side effect of fetching artists
 function* fetchArtistsSaga(): Generator {
   try {
-    // Use `call` effect for async operation, typed as `Promise<Artist[]>`
     const artists: Artist[] = (yield call(fetchArtistsApi)) as Artist[];
     // Dispatch success action with artists
     yield put(fetchArtistsSuccess(artists));

@@ -22,7 +22,6 @@ async function fetchAlbumsApi(): Promise<Album[]> {
 // Saga to handle the side effect of fetching albums
 function* fetchAlbumsSaga(): Generator {
   try {
-    // Use `call` effect for async operation, typed as `Promise<Album[]>`
     const albums: Album[] = (yield call(fetchAlbumsApi)) as Album[];
     // Dispatch success action with albums
     yield put(fetchAlbumsSuccess(albums));
